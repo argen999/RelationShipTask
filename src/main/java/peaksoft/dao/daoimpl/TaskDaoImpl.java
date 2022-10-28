@@ -14,8 +14,7 @@ public class TaskDaoImpl implements TaskDao {
     public void saveTask(Task task) {
         EntityManager entityManager = Util.getConnection();
         entityManager.getTransaction().begin();
-        entityManager.persist(new Task(task.getName(),
-                task.getDeadLina(), task.getTask(), task.getLesson().getId()));
+        entityManager.persist(task);
         entityManager.getTransaction().commit();
         entityManager.close();
     }
