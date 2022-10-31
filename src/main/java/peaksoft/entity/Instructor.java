@@ -20,8 +20,7 @@ public class Instructor {
     private String email;
     private Integer phoneNumber;
 
-    @ManyToMany(
-    fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "instructor_course",
     joinColumns = @JoinColumn(name = "instructor_id", referencedColumnName = "id"),
     inverseJoinColumns = @JoinColumn(name = "course_id",referencedColumnName = "id"))

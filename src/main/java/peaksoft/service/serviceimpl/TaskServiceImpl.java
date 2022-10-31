@@ -10,9 +10,9 @@ import java.util.List;
 public class TaskServiceImpl implements TaskService {
     private TaskDaoImpl taskDao = new TaskDaoImpl();
     @Override
-    public void saveTask(Task task) {
+    public void saveTask(Task task, Long lesson_id) {
         try {
-            taskDao.saveTask(task);
+            taskDao.saveTask(task, lesson_id);
             System.out.println("Task saved successfully!");
         } catch (HibernateException e) {
             throw new RuntimeException(e);

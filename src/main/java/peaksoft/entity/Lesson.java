@@ -21,7 +21,6 @@ public class Lesson {
     private String name;
     private String videoLink;
 
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "course_id")
     private Course course;

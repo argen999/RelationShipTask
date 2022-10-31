@@ -11,10 +11,14 @@ import java.util.List;
 public class TaskDaoImpl implements TaskDao {
 
     @Override
-    public void saveTask(Task task) {
+    public void saveTask(Task task, Long lesson_id) {
         EntityManager entityManager = Util.getConnection();
         entityManager.getTransaction().begin();
+        Lesson lesson = entityManager.find(Lesson.class, lesson_id);
+        lesson.getTasks().add(task);
+        task.setLesson(lesson);
         entityManager.persist(task);
+        entityManager.persist(lesson);
         entityManager.getTransaction().commit();
         entityManager.close();
     }

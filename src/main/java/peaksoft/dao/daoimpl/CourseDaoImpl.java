@@ -75,10 +75,17 @@ public class CourseDaoImpl implements CourseDao {
     public Course getCourseByName(String name) {
         EntityManager entityManager = Util.getConnection();
         entityManager.getTransaction().begin();
-        Course course = entityManager.find(Course.class, name);
+        List<Course> courses = entityManager
+                .createQuery("select c from Course c")
+                .getResultList();
+        for (Course course:courses) {
+            if (course.getCourseName().equals(name)) {
+                return course;
+            }
+        }
         entityManager.getTransaction().commit();
         entityManager.close();
         System.out.println("Get course by name successfully!");
-        return course;
+        return null;
     }
 }

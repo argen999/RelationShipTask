@@ -15,7 +15,9 @@ public class LessonDaoImpl implements LessonDao {
         entityManager.getTransaction().begin();
         Course course = entityManager.find(Course.class, course_id);
         course.getLessons().add(lesson);
+        lesson.setCourse(course);
         entityManager.persist(course);
+        entityManager.persist(lesson);
         entityManager.getTransaction().commit();
         entityManager.close();
     }
